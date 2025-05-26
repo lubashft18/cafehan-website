@@ -1,0 +1,167 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Special+Gothic+Condensed+One&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'EB Garamond', serif;
+    background: #C9B194;
+    width: 100%;
+     height: 100%;
+}
+
+
+.wrapper {
+    width: 100%;
+    margin: auto;
+    padding: 1rem;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-family: "EB Garamond", serif;
+    align-items: center;
+    
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 80px;
+    margin-bottom: 20px;
+}
+
+.logo-text {
+    margin-left: 20px;
+    color: #754E1A;
+    font-family: 'Special Gothic Condensed One', sans-serif;
+    font-weight: bold;
+    font-size: 25px;
+    
+}
+
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: #4E1F00;
+    font-size: 16px;
+    padding: 0.5rem;
+    transition: 0.3s ease;
+    font-weight:bolder;
+    letter-spacing: 2px;
+    box-shadow: 0 5px 15px rgba(19, 16, 16, 0.1);
+  
+     
+ 
+}
+
+.nav-links li a:hover {
+    background-color: #754E1A;
+    color: #fff;
+    border-radius: 4px;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+header {
+  background-color:  #825B32;
+  color:   #ccc;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background-color: #A08963;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #4E1F00;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+textarea {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+input:focus,
+textarea:focus {
+ box-shadow: 0 0 10px 4px  #754E1A;
+  outline: none;
+}
+
+.btn {
+  background-color: #754E1A;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: fit-content;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color:#4E1F00;
+}
+
+.message {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #825B32;
+  color: #fff;
+  font-size: 0.9rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 1.2rem;
+  }
+}

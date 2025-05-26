@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Checkout Summary</title>
+  <link rel="stylesheet" href="checkout2.css" />
+</head>
+<body>
+  <header>
+    <h1>Checkout Summary</h1>
+     <button class="back" onclick="history.back()">← </button>
+  </header>
+
+  <div class="container" id="summary-container">
+   
+  </div>
+  <div class="delivery-opt">
+  <button class="btn-dine" onclick="location.href='checkout2.html'">DINE-IN</button>
+  <button class="btn-takeout" onclick="location.href='checkout.html'">TAKE-OUT</button>
+</div>
+  
+  <div class="user-info">
+    <h2>Enter Your Details</h2>
+    <form id="order-form">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" required placeholder="Your full name" />
+      <label for="table">Table Number:</label>
+      <textarea id="table" required placeholder="Your table number"></textarea> 
+
+      <button type="submit" id="place-order-btn">Place Order</button>
+    </form>
+  </div>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const container = document.getElementById("summary-container");
+    const orderForm = document.getElementById("order-form");
+
+    if (cart.length === 0) {
+      container.innerHTML = "<p>Your cart is empty. <a href='index.html'>Go back</a></p>";
+    } else {
+      let total = 0;
+      const itemsHTML = cart.map(item => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+        return `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.name}" />
+            <div class="item-details">
+              <strong>${item.name} x${item.quantity}</strong>
+              <small>$${itemTotal.toFixed(2)}</small>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      container.innerHTML = `
+        <h2>Items in Your Cart</h2>
+        ${itemsHTML}
+        <div class="cart-total" style="margin-top: 1rem;">Total: $${total.toFixed(2)}</div>
+      `;
+    }
+
+   orderForm.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const table = document.getElementById("table").value;
+ 
+  if (name && table) {
+    const orderDetails = {
+      name,
+      table,
+      cart,
+      total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0)
+    };
+
+    localStorage.setItem("orderReceipt", JSON.stringify(orderDetails));
+
+    window.location.href = "receipt2.html";
+  } else {
+    alert("Please fill in all fields.");
+  }
+});
+
+
+  </script>
+</body>
+</html>
+

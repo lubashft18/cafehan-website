@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your Receipt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .receipt {
+      max-width: 600px;
+      margin: auto;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .receipt h2 {
+      text-align: center;
+    }
+    .item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .total {
+      font-weight: bold;
+      text-align: right;
+      margin-top: 20px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      display: block;
+      margin-left: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="receipt" id="receipt">
+    <h2>Order Receipt</h2>
+    <div id="customer-info"></div>
+    <hr />
+    <div id="order-items"></div>
+    <div class="total" id="order-total"></div>
+    <button onclick="window.print()">Print Receipt</button>
+  </div>
+
+  <script>
+    const receiptData = JSON.parse(localStorage.getItem("orderReceipt"));
+
+    if (!receiptData) {
+      document.getElementById("receipt").innerHTML = "<p>No receipt data found.</p>";
+    } else {
+      const { name, table, cart, total } = receiptData;
+
+      document.getElementById("customer-info").innerHTML = `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Table:</strong> ${table}</p>
+      `;
+
+      const itemsHTML = cart.map(item => `
+        <div class="item">
+          <span>${item.name} x${item.quantity}</span>
+          <span>$${(item.price * item.quantity).toFixed(2)}</span>
+        </div>
+      `).join("");
+
+      document.getElementById("order-items").innerHTML = itemsHTML;
+      document.getElementById("order-total").textContent = `Total: $${total.toFixed(2)}`;
+
+     
+      localStorage.removeItem("cart");
+      localStorage.removeItem("orderReceipt");
+    }
+  </script>
+</body>
+</html>
